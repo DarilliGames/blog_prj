@@ -25,7 +25,7 @@ SECRET_KEY = '-2!x(zhylx)l(d6iut*g_r1-84=lx++8waihql06&x0my*#d-6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangoblog-smoody.c9users.io']
+ALLOWED_HOSTS = ['djangoblog-smoody.c9users.io', 'blogprojects.herokuapp.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
