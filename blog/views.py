@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def get_index(request):
-    return render(request, "home/index.html")
+def get_main(request):
+    return render(request, "blog/index.html")
