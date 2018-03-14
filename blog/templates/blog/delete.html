@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+    <h2>CONFIRM!</h2>
+    <p>Are you sure you want to delete <b>{{blog.title}}</b>?</p>
+    <p>You will not be able to retrieve it ever again!</p>
+    <a href="{% url 'deleteconfirm' blog.id %}">YES</a>     <a href="/blog">NO</a>
+
+
+{% endblock %}

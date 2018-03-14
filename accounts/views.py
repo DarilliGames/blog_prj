@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from .forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from blog.models import Post
 
 # Create your views here.
 def logout(request):
@@ -39,10 +41,24 @@ def login(request):
     
     
 @login_required()    
-def profile(request):
-    return render(request, 'accounts/profile.html')
+def yourprofile(request):
+    return render(request, 'accounts/yourprofile.html')
     
+def profile(request, id):
+    person = get_object_or_404(User, pk=id)
+    percheck = str(person.username)
+    if person == request.user:
+        return redirect('yourprofile')
+    allposts = Post.objects.all()
+    posts = []
+    for post in allposts:
+        postcheck = str(post.author)
+        if postcheck == percheck:
+            posts.append(post)
+    return render(request, 'accounts/profile.html', {"person":person, "posts":posts})
     
+     
+  
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -55,7 +71,7 @@ def register(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")
-                return redirect('profile')
+                return redirect('yourprofile')
 
             else:
                 messages.error(request, "unable to log you in at this time!")

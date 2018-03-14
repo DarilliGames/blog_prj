@@ -2,6 +2,20 @@
 
 {% block content %}
     <h1>This is the blog page</h1>
-    
+    <div style="width: 300px; background-color: red; padding: 5px; margin: 5px">
+        <div style="background-color: white; padding: 5px; margin: 5px"><form action="{% url 'write' %}">Add to The Community<input type="submit" value="Create New"></form></div>
+    </div>
+    {% for b in blogs %}
+    <div style="display: inline-block; width: 300px; background-color: red; padding: 5px; margin: 5px">
+        <div style="background-color: white; padding: 5px; margin: 5px">{{b.title}} Views: {{b.views}}</div>
+        <div style="background-color: white; padding: 5px; margin: 5px">{{b.content}}</div>
+        <div style="background-color: white; padding: 5px; margin: 5px">Written By - <b>{{b.author}}</b> <a href="post/{{b.id}}">Read More</a></div>
+        <div>Is it yours?
+        <form action="edit/{{ b.id }}"><input type="submit" value="Edit"></form>
+        <form action="delete/{{ b.id }}"><input type="submit" value="Delete"></form></div>
+    </div>
+    {% empty %}
+        <p>You have nothing to do.</p>
+    {% endfor %}
     
 {% endblock %}
