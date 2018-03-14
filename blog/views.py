@@ -12,6 +12,7 @@ def get_blog(request, id):
     blog.views +=1
     blog.save()
     return render(request, "blog/blog.html", {"blog" : blog})
+
     
 def write_blog(request):
     if request.method == "POST":
@@ -24,7 +25,7 @@ def write_blog(request):
     else:
         form = PostForm()
         return render(request, "blog/writeblog.html", {"form": form})
-        
+
 def edit_blog(request, id):
     blog = get_object_or_404(Post, pk=id)
     if blog.author == request.user:

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    
     'home',
     'accounts',
     'blog',
@@ -58,6 +59,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'djangoblog.urls'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 TEMPLATES = [
     {

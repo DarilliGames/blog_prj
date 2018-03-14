@@ -1,6 +1,18 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-    <h2>Success!</h2>
-    <p>You are logged in as {{ user.email }} </p>
+{% for b in blog %}
+{{b}}
+{{blog.title}}
+    <div style="display: inline-block; width: 300px; background-color: red; padding: 5px; margin: 5px">
+        <div style="background-color: white; padding: 5px; margin: 5px">{{b.title}} Views: {{b.views}}</div>
+        <div style="background-color: white; padding: 5px; margin: 5px">Written By - <b><a href="{% url 'profile' user.id %}">{{b.author}}</a></b> 
+            <a href="{% url 'blog' b.id %}">Read More</a></div>
+        <div>Is it yours?
+        <form action="{% url 'edit' b.id %}"><input type="submit" value="Edit"></form>
+        <form action="{% url 'delete' b.id %}"><input type="submit" value="Delete"></form></div>
+    </div>
+    {% empty %}
+        <p>You have nothing to do.</p>
+    {% endfor %}
 {% endblock content %}

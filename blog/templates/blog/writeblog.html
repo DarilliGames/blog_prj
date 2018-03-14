@@ -1,13 +1,12 @@
 {% extends 'home/base.html' %}
-
+{% load bootstrap_tags %}
 {% block content %}
     <h1>This is where you write a blog page</h1>
     <form method="POST">
         {% csrf_token %}
-        Title:<br>{{ form.title }}
+        {{ form | as_bootstrap }}
         <br>
-        Body:<br>{{ form.content }}
-        <br>
+
         <input type="submit" value="Send Message">
     </form>
     

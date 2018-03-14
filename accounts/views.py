@@ -28,6 +28,7 @@ def login(request):
             if user is not None:
                 #Log them in
                 auth.login(request, user)
+                messages.success(request, "You have sucessfully logged out")
                 return redirect(redirect_to)
             else:
                 # say no
@@ -42,7 +43,16 @@ def login(request):
     
 @login_required()    
 def yourprofile(request):
-    return render(request, 'accounts/yourprofile.html')
+    allposts = Post.objects.all()
+    blog = []
+    for post in allposts:
+        postcheck = str(post.author)
+        print(postcheck)
+        print(request.user.username + " is " + postcheck)
+        if postcheck == request.user.username:
+            blog.append(post)
+        print(blog)
+    return render(request, 'accounts/yourprofile.html', {"blog":blog})
     
 def profile(request, id):
     person = get_object_or_404(User, pk=id)
