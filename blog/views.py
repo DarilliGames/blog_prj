@@ -68,6 +68,5 @@ def publish(request, id):
     if blog.author == request.user:
         blog.publish()
         blog.save()
-    print(blog.published_date)
     return redirect("yourprofile")
     
