@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^delete/(\d+)', delete_blog, name="delete"),
     url(r'^delete/confirm/(\d+)', delete_confirm, name="deleteconfirm"),
     url(r'^write/', write_blog, name="write"),
+    url(r'^publish/(\d+)', publish, name="publish"),
     
 ]

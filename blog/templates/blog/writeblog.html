@@ -2,12 +2,12 @@
 {% load bootstrap_tags %}
 {% block content %}
     <h1>This is where you write a blog page</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form | as_bootstrap }}
         <br>
-
-        <input type="submit" value="Send Message">
+        <input type="submit" name="save" value="Save">
+        <input type="submit" name="publish" value="Publish">
     </form>
     
 {% endblock %}

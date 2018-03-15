@@ -2,8 +2,25 @@
 
 {% block content %}
 
-    <h2>{{blog.title}}</h2>
-    <p>{{blog.content}}</p>
-    <p>Written By - {{blog.author}}</p>
-
+    <div class="col-sm-12" style="background-color: red; border: solid gray 3px; border-radius: 10px">
+        <div class="col-sm-12" style="padding-top:10px">
+            <div class="col-sm-4" style="background-color: white; border: solid gray 3px; border-radius: 10px">
+                <h2>{{blog.title}}</h2>
+                <p>Written By - {{blog.author}}</p>
+            </div>
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-4">
+                {% if blog.image %}
+                <img src="{{ MEDIA_URL }}{{blog.image}}" style="max-height: 200px; border: solid gray 3px; border-radius: 10px"/>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-12" style="background-color: white; min-height: 400px; margin-top: 10px; margin-bottom: 10px; border: solid gray 3px; border-radius: 10px">
+            <br>
+            <p>{{blog.content}}</p>
+            <br>
+        </div>
+    </div>
 {% endblock %}

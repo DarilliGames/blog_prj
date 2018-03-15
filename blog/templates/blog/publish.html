@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+    <h2>CONFIRM!</h2>
+    <p>Do you want to publish? Or just Save this Post? <b>{{blog.title}}</b>?</p>
+    <p>You will not be able to retrieve it ever again!</p>
+    <a href="{% url 'publish' blog.id %}">Publish</a>     <a href="/blog">Save As Draft</a>
+
+
+{% endblock %}

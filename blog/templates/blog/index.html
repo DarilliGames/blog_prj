@@ -1,5 +1,5 @@
 {% extends 'home/base.html' %}
-
+{% load gravatar %}
 {% block content %}
     <h1>This is the blog page</h1>
     <div style="width: 300px; background-color: red; padding: 5px; margin: 5px">
@@ -14,10 +14,22 @@
             <div class="col-sm-12" style="padding-bottom:10px"></div>
     {% for b in blogs %}
         <div class="col-sm-4">
-            <div style="background-color: white; border: solid gray 3px; border-radius: 10px; height:200px">
-                <h3 style="padding: 5px; margin: 5px; text-align:center;">{{b.title}}</h3>
-                <p style="background-color: white; padding: 5px; margin: 5px">{{b.content|slice:":100"}}</p>
-                <p class="align-text-bottom" style="background-color: white; padding: 5px; margin: 5px">Written By - <b>{{b.author}}</b> <a href="post/{{b.id}}">Read More</a> Views: {{b.views}}</p>
+            <div style="background-color: white; border: solid gray 3px; border-radius: 10px; height:250px">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="{% gravatar_url b.author.email %}" style="width:100px; height: 100px; margin-top: 10px; margin-left:10px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                    </div>
+                    <div class="col-sm-8">
+                        <h3 style="padding: 5px; margin: 5px; text-align:center; vertical-align: middle">{{b.title}}</h3>
+                    </div> 
+                </div>
+                
+                <div class="col-sm-12" style="height: 100px">
+                    <p style="background-color: white; padding: 5px; margin: 5px">{{b.content|truncatewords:30}}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p style="background-color: white; ">Written By - <b>{{b.author}}</b> <a href="post/{{b.id}}">Read More</a> Views: {{b.views}}</p>
+                </div>
             </div>
         </div>
     {% empty %}

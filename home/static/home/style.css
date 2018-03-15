@@ -1,7 +1,8 @@
 
 body {
     font-family: Arial;
-    padding-top: 50px;
+    padding-top: 80px;
+    background-color: #ececec;
 }
 
 footer {
@@ -18,4 +19,34 @@ footer {
 
 .accountform {
     padding-top: 20px;
+}
+.nav {
+    background-image: none;
+    background-color: red;
+    
+}
+.navbar-header{
+    background-image: none;
+    background-color: red;
+    border-color: gray;
+}
+.navbar-default {
+    background-image: none;
+    background-color: red;
+    border-bottom: solid gray 3px;
+}
+.navbar{
+    background-image: none;
+    background-color: red;
+    border-color: gray;
+}
+.navbar-masthead{
+    background-image: none;
+    background-color: red;
+    border-color: gray;
+}
+.navbar-fixed-top{
+    background-image: none;
+    background-color: red;
+    border-color: gray;
 }
