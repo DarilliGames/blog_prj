@@ -2,29 +2,33 @@
 {% load gravatar %}
 {% block content %}
     <h1>This is the blog page</h1>
-    <div style="width: 300px; background-color: red; padding: 5px; margin: 5px">
-        <div style="background-color: white; padding: 5px; margin: 5px"><form action="{% url 'write' %}">Add to The Community<input type="submit" value="Create New"></form></div>
-    </div>
     
-    <div class="col-sm-12" style="background-color: red; padding: 5px; margin: 5px">
+    
+                                    <!-- This is where everything should be in terms of browsing blogs -->
+    <div class="col-sm-12" style="background-color: red; padding: 5px; margin: 5px; border: solid gray 3px; border-radius: 10px;">
             <div class="col-sm-6 col-md-offset-3" style="background-color: white; border: solid gray 3px; border-radius: 10px;">
-                <h3 style="text-align:center;">Blogs</h3>
+                <h2 style="text-align:center;">Blogs</h2>
+                <div style="text-align:center; padding-bottom: 5px">
+                    <p style="display:inline-block">Write a blog</p>
+                    <a style="display:inline-block" href="{% url 'write' %}" class="btn btn-primary" role="button" aria-pressed="true">Write</a>
+                    <p style="display:inline-block">Join the community</p>
+                    <a style="display:inline-block" href="{% url 'register' %}" class="btn btn-success" role="button" aria-pressed="true">Join</a>
+                </div>
             </div>
-            <div class="col-sm-3"></div>
             <div class="col-sm-12" style="padding-bottom:10px"></div>
     {% for b in blogs %}
         <div class="col-sm-4">
             <div style="background-color: white; border: solid gray 3px; border-radius: 10px; height:250px">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="{% gravatar_url b.author.email %}" style="width:100px; height: 100px; margin-top: 10px; margin-left:10px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                        <img src="{% gravatar_url b.author.email %}" style="max-width:100%; max-height: 100%; margin-top: 10px; margin-left:10px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
                     </div>
                     <div class="col-sm-8">
                         <h3 style="padding: 5px; margin: 5px; text-align:center; vertical-align: middle">{{b.title}}</h3>
                     </div> 
                 </div>
                 
-                <div class="col-sm-12" style="height: 100px">
+                <div class="col-sm-12" style="max-height: 100px">
                     <p style="background-color: white; padding: 5px; margin: 5px">{{b.content|truncatewords:30}}</p>
                 </div>
                 <div class="col-sm-12">
