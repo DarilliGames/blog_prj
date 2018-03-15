@@ -6,7 +6,7 @@
         <div class="col-sm-12" style="padding-top:10px">
             <div class="col-sm-4" style="background-color: white; border: solid gray 3px; border-radius: 10px">
                 <h2>{{blog.title}}</h2>
-                <p>Written By - {{blog.author}}</p>
+                <p>Written By - <a href="{% url 'profile' blog.author.id %}">{{blog.author}}</a></p>
             </div>
             <div class="col-sm-4">
                 

@@ -21,7 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-2!x(zhylx)l(d6iut*g_r1-84=lx++8waihql06&x0my*#d-6'
+
+SECRET_KEY = str(os.environ.get('SECRET_KEY'))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'django_gravatar',
-    
     'home',
     'accounts',
     'blog',
@@ -117,8 +118,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.EmailAuth'
+    'accounts.backends.EmailAuth',
 ]
+
+
+
+
+# # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# # you run `collectstatic`).
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
