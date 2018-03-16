@@ -22,7 +22,6 @@ def get_mail(request, id):
     else:
         return redirect("index")
 
-
 def write_mail(request):
     form = MessageForm()
     return render(request, "mbox/compose.html", {"form" : form})
