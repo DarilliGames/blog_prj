@@ -7,7 +7,7 @@ import home.views as home_views
 
 from accounts import urls as accounts_urls
 from blog import urls as blog_urls
-from messenger import urls as mail_urls
+from mbox import urls as mail_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

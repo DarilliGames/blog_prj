@@ -1,0 +1,42 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'messenger/style.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div class="container">
+    <br><br>
+    
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <a href="{% url 'write' %}" class="btn btn-danger btn-sm btn-block" role="button"><i class="glyphicon glyphicon-edit"></i> Compose</a>
+            <hr>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="{% url 'inbox' %}"><span class="badge pull-right">{{ unread }}</span> Inbox </a>
+                </li>
+                <li><a href="{% url 'sent' %}">Sent Mail</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+                        <div class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <div class="list-group">
+                        
+                        {% for message in user.messages_received.all %}
+                        <a href="{% url 'mail' message.id %}" class="list-group-item">
+                            <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
+                                display: inline-block;">{{ message.sender.username }}</span> <span class="">{{ message.subject }}</span>
+                            <span class="text-muted" style="font-size: 11px;">- {{ message.body }}</span> <span class="badge">{{ message.date }} </span> <span class="pull-right"></span></a>
+                        {% endfor %}
+                                
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

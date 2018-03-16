@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'blog',
-    'messenger',
+    'mbox',
+    
+    
 ]
 
 MIDDLEWARE_CLASSES = [
