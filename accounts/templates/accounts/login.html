@@ -8,10 +8,11 @@
                     <legend>Login</legend>
                     {% csrf_token %}
                     {{ form | as_bootstrap }}
-                    <p>Forgot my password</p>
+                    <p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
+                    
                 </form>
             </div>
         </div>

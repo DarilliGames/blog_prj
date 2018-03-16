@@ -1,17 +1,20 @@
 {% extends 'home/base.html' %}
 {% load gravatar %}
 {% block content %}
-    <h2>Success!</h2>
-    <p>Profile for {{ person.username }} </p>
-    <img src="{% gravatar_url person.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+    <h2>Profile for {{ person.username }}</h2>
+    <div>
+        <img src="{% gravatar_url person.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle"/>
+    </div>
+    
     {% for b in posts %}
-    <div style="display: inline-block; width: 300px; background-color: red; padding: 5px; margin: 5px">
-        <div style="background-color: white; padding: 5px; margin: 5px">{{b.title}} Views: {{b.views}}</div>
-        <div style="background-color: white; padding: 5px; margin: 5px">Written By - <b><a href="{% url 'profile' person.id %}">{{b.author}}</a></b> 
-            <a href="{% url 'blog' b.id %}">Read More</a></div>
-        <div>Is it yours?
-        <form action="edit/{{ b.id }}"><input type="submit" value="Edit"></form>
-        <form action="delete/{{ b.id }}"><input type="submit" value="Delete"></form></div>
+    <div class="col-sm-3" style="width: 300px; background-color: red; padding: 5px; margin: 5px; border: solid gray 3px; border-radius: 10px">
+        <div style="background-color: white; padding: 5px; margin: 5px; max-height: 200px; border-radius: 10px">
+            <h4>{{b.title}}</h4>
+            <p>Views: {{b.views}}</p>
+            <p style="height:70px">{{b.content|truncatewords:15}}</p>
+            <p style="text-align:center"><a href="{% url 'blog' b.id %}">Read More</a></p>
+        </div>
+        
     </div>
     {% empty %}
         <p>You have nothing to do.</p>

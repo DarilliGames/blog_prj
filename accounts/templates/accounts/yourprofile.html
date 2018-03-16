@@ -1,16 +1,29 @@
 {% extends 'home/base.html' %}
 {% load gravatar %}
 {% block content %}
-<img src="{% gravatar_url user.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
-    
+    <div class="container">
+        <div class-"row">
+            <div class="col-sm-4" style="display:inline-block">
+                <img src="{% gravatar_url user.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff; display:inline-block" class="img-circle">
+                <h2 style="display:inline-block"> Hello {{user}}!</h2>
+            </div>
+            <div class="col-sm-4" style="display:inline-block">
+                <img src="{% gravatar_url user.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff; display:inline-block" class="img-circle">
+                <h2 style="display:inline-block"> Hello {{user}}!</h2>
+            </div>
+            <div class="col-sm-4" style="display:inline-block; background-color: red">
+                <a href="{% url 'deleteaccount' user.id %}" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+            </div>
+            
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             {% for b in blog %}
-            <div class="col-sm-3" style="padding-bottom:20px">
-                <div class="col-sm-12" style="background-color: red; height: 200px">
-                <div style="background-color: white; padding: 5px; margin: 5px">{{b.title}} Views: {{b.views}}</div>
-                <div style="background-color: white; padding: 5px; margin: 5px">Written By - <b><a href="{% url 'profile' user.id %}">{{b.author}}</a></b> 
-                    <a href="{% url 'blog' b.id %}">Read More</a>
+            <div class="col-sm-4" style="padding-bottom:20px; border: solid gray 3px; border-radius: 10px; background-color: red; height: 200px">
+                <div style="background-color: white; padding: 5px; margin: 5px; border-radius: 10px">
+                    <p><b>{{b.title}}</b></p>
+                    <p>Views: {{b.views}}</p><a href="{% url 'blog' b.id %}">Read</a>
                 </div>
                 <div class="col-sm-12 text-center">
                     <a href="{% url 'edit' b.id %}" class="btn btn-primary" role="button" aria-pressed="true">Edit</a>

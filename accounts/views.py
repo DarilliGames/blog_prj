@@ -33,7 +33,7 @@ def login(request):
         form = UserLoginForm()
     return render(request, 'accounts/login.html', { 'form': form })
 
-@login_required()    
+@login_required()
 def yourprofile(request):
     allposts = Post.objects.all()
     blog = []
@@ -72,3 +72,16 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
+
+@login_required()
+def remove_profile(request, id):
+    profile = get_object_or_404(User, pk=id)
+    if profile.username == request.user or request.user.is_staff:
+        allposts = Post.objects.all()
+        for post in allposts:
+            postcheck = str(post.author)
+            if postcheck == profile.username:
+                post.delete()
+    auth.logout(request)
+    profile.delete()
+    return redirect('home')
